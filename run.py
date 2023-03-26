@@ -1,5 +1,10 @@
+"""
+This module provides utility functions working with Google Sheets
+"""
+
+
 import gspread
-from google.oauth2.service_account import Credentials  
+from google.oauth2.service_account import Credentials
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -16,8 +21,16 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("love_sandwiches")
 
 
-sales = SHEET.worksheet('sales')
+def get_sales_data():
+    """
+    Get sales figures input from the user.
+    """
+    print("Please enter sales data from the last market.")
+    print("Data should be six numbers, separated by commas.")
+    print("Example: 10,20,30,40,50,60\n")
 
-data = sales.get_all_values()
+    data_str = input("Enter your data here: ")
+    print(f"The data provided is {data_str}")
 
-print(data)
+
+get_sales_data()
